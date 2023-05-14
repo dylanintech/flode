@@ -123,6 +123,10 @@ export default function Interact() {
     
                 //res will be response from RUNOVERALLCHAIN on server
                 // const res = await overallChain.run({ app: input });
+                console.log('input', input);
+
+                // prod: 'https://flode.vercel.app/api/overallchain'
+
                 const res = await fetch('https://flode.vercel.app/api/overallchain', {
                     method: "put",
                     body: JSON.stringify({ input: input }),
@@ -237,6 +241,7 @@ export default function Interact() {
             if (passedItem === item5) setPseudocode5Loading(true);
             
             // const res = await pseudocodeChain.call({ item: passedItem });
+            // prod: 'https://flode.vercel.app/api/pseudocodechain'
             const res = await fetch('https://flode.vercel.app/api/pseudocodechain', {
                 method: "put",
                 body: JSON.stringify({ input: passedItem }),
@@ -372,7 +377,7 @@ export default function Interact() {
         {session && <div className='w-full flex flex-col gap-2 justify-center items-center'>
             <div className="flex flex-col gap-2 w-1/2 rounded-lg shadow-xl bg-white p-2">
                 <div className="flex flex-row gap-1 items-center justify-center rounded-lg">
-                     {fullName ? <p className="text-2xl font-mono text-black">builder: {fullName}</p> : <p className="text-2xl font-mono tex-black">no name</p>}
+                     {fullName ? <p className="text-2xl font-mono text-black">builder: {fullName}</p> : <p className="text-2xl font-mono text-black">no name</p>}
                      {avatarURL ? <img src={avatarURL} alt="avatar" className="rounded-full w-10"/> : <div className="rounded-full w-10 bg-gray"></div>}
                 </div>
                 {credits ? <p className="text-xl text-center font-mono text-black w-full">{credits} credits</p> : <p className="text-xl text-center text-black font-mono">0 credits</p>}
@@ -412,13 +417,13 @@ export default function Interact() {
                             e.preventDefault();
                             generatePseudocode(item1);
                         }} className="bg-black rounded-full p-2">
-                            <p>generate pseudocode</p>
+                            <p className="text-white font-mono">generate pseudocode</p>
                         </button>
                         <button onClick={(e) => {
                             e.preventDefault();
                             alert('vs code extension coming soon :)')
                         }} className="bg-black rounded-full p-2">
-                            <p>add item to vs code</p>
+                            <p className="text-white font-mono">add item to vs code</p>
                         </button>
                     </div>
                     {editingItem1 && (
@@ -478,19 +483,19 @@ export default function Interact() {
                             e.preventDefault();
                             generatePseudocode(item2);
                         }} className="bg-black rounded-full p-2">
-                            <p>generate pseudocode</p>
+                            <p className="text-white font-mono">generate pseudocode</p>
                         </button>
                         {/* when pseudocode is generated add conditional rendering for button to generate prompt/code for the item */}
                         <button onClick={(e) => {
                             e.preventDefault();
                             alert('vs code extension coming soon :)')
                         }} className="bg-black rounded-full p-2">
-                            <p>add item to vs code</p>
+                            <p className="text-white font-mono">add item to vs code</p>
                         </button>
                     </div>
                     {editingItem2 && (
                         <div className="flex flex-col gap-1 items-center ">
-                            <label>what do you wanna change this item to?</label>
+                            <label className="text-black font-mono">what do you wanna change this item to?</label>
                             <input
                             value={editedItem2}
                             onChange={(e) => setEditedItem2(e.target.value)}
@@ -545,19 +550,19 @@ export default function Interact() {
                             e.preventDefault();
                             generatePseudocode(item3);
                         }} className="bg-black rounded-full p-2">
-                            <p>generate pseudocode</p>
+                            <p className="text-white font-mono">generate pseudocode</p>
                         </button>
                         {/* when pseudocode is generated add conditional rendering for button to generate prompt/code for the item */}
                         <button onClick={(e) => {
                             e.preventDefault();
                             alert("vs code extension coming soon :)")
                         }} className="bg-black rounded-full p-2">
-                            <p>add item to vs code</p>
+                            <p className="text-white font-mono">add item to vs code</p>
                         </button>
                     </div>
                     {editingItem3 && (
                         <div className="flex flex-col gap-1 items-center ">
-                            <label>what do you wanna change this item to?</label>
+                            <label className="text-black font-mono">what do you wanna change this item to?</label>
                             <input
                             value={editedItem3}
                             onChange={(e) => setEditedItem3(e.target.value)}
@@ -569,7 +574,7 @@ export default function Interact() {
                                     e.preventDefault();
                                     editItem();
                                  }}>
-                                    <p className="text-black text-center font-mono">save</p>
+                                    <p className="text-white text-center font-mono">save</p>
                                  </button>
                                  <button onClick={(e) => {
                                     e.preventDefault();
@@ -612,19 +617,19 @@ export default function Interact() {
                             e.preventDefault();
                             generatePseudocode(item4);
                         }} className="bg-black rounded-full p-2">
-                            <p>generate pseudocode</p>
+                            <p className="text-white font-mono">generate pseudocode</p>
                         </button>
                         {/* when pseudocode is generated add conditional rendering for button to generate prompt/code for the item */}
                         <button onClick={(e) => {
                             e.preventDefault();
                             alert("vs code extension coming soon :)")
                         }} className="bg-black rounded-full p-2">
-                            <p>add to vs code</p>
+                            <p className="text-white font-mono">add to vs code</p>
                         </button>
                     </div>
                     {editingItem4 && (
                         <div className="flex flex-col gap-1 items-center ">
-                            <label>what do you wanna change this item to?</label>
+                            <label className="text-black font-mono">what do you wanna change this item to?</label>
                             <input
                             value={editedItem4}
                             onChange={(e) => setEditedItem4(e.target.value)}
@@ -678,19 +683,19 @@ export default function Interact() {
                             e.preventDefault();
                             generatePseudocode(item5);
                         }} className="bg-black rounded-full p-2">
-                            <p>generate pseudocode</p>
+                            <p className="text-white font-mono">generate pseudocode</p>
                         </button>
                         {/* when pseudocode is generated add conditional rendering for button to generate prompt/code for the item */}
                         <button onClick={(e) => {
                             e.preventDefault();
                             alert("vs code extension coming soon :)")
                         }} className="bg-black rounded-full p-2">
-                            <p>add to vs code</p>
+                            <p className="text-white font-mono">add to vs code</p>
                         </button>
                     </div>
                     {editingItem5 && (
                         <div className="flex flex-col gap-1 items-center ">
-                            <label>what do you wanna change this item to?</label>
+                            <label className="text-black font-mono">what do you wanna change this item to?</label>
                             <input
                             value={editedItem5}
                             onChange={(e) => setEditedItem5(e.target.value)}
@@ -701,7 +706,7 @@ export default function Interact() {
                                 e.preventDefault();
                                 editItem();
                              }}>
-                                <p className="text-black text-center font-mono">save</p>
+                                <p className="text-white text-center font-mono">save</p>
                              </button>
                                 <button onClick={(e) => {
                                 e.preventDefault();
