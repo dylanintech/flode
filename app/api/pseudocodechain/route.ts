@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { LLMChain, SimpleSequentialChain } from "langchain/chains";
 
 export const runtime = 'edge';
 
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
    const { input } = await request.json();
 
    const pseudocodeModel = new OpenAI({

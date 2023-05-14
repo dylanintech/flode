@@ -1,3 +1,4 @@
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
@@ -6,7 +7,7 @@ import { LLMChain, SimpleSequentialChain } from "langchain/chains";
 export const runtime = 'edge';
 
 //change prompts to return responses in first person
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
      //first layer
      const firstLayerModel = new OpenAI({
         openAIApiKey: process.env.OPENAI_API_KEY,
@@ -44,9 +45,11 @@ export async function PUT(request: Request) {
         verbose: true,
     })
 
-    const { input } = await request.json();
+    // const { input } = await request.json();
+    const { input } = (await request.json());
+    console.log('this is the input on the server', input);
 
-    const res = await overallChain.run({ app: input });
+    const res = await overallChain.run(input);
 
     //return server response
     return NextResponse.json({ response: res});
