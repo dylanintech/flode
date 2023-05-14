@@ -123,7 +123,7 @@ export default function Interact() {
     
                 //res will be response from RUNOVERALLCHAIN on server
                 // const res = await overallChain.run({ app: input });
-                const res = await fetch('http://localhost:3000/api/overallchain', {
+                const res = await fetch('https://flode.vercel.app/api/overallchain', {
                     method: "put",
                     body: JSON.stringify({ input: input }),
                 })
@@ -175,7 +175,7 @@ export default function Interact() {
                 // setAgentItem3(agentResponse3);
                 // setAgentItem4(agentResponse4);
                 // setAgentItem5(agentResponse5);
-                
+
                 setItem1(items[0]);
                 setItem2(items[1]);
                 setItem3(items[2]);
@@ -237,7 +237,7 @@ export default function Interact() {
             if (passedItem === item5) setPseudocode5Loading(true);
             
             // const res = await pseudocodeChain.call({ item: passedItem });
-            const res = await fetch('http://localhost:3000/api/pseudocodechain', {
+            const res = await fetch('https://flode.vercel.app/api/pseudocodechain', {
                 method: "put",
                 body: JSON.stringify({ input: passedItem }),
             })
