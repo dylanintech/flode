@@ -395,7 +395,7 @@ export default function NewList(props: NewListProps) {
                 e.preventDefault();
                 createList();
             }}>
-                create to-do list
+                <p className="text-white font-mono">create to-do list</p>
             </button>
             {!loading && item1 && (
                 <div className="flex flex-col gap-2 bg-white rounded-lg shadow-lg w-full my-2 p-2 items-center border-none">
