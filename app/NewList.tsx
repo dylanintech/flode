@@ -374,19 +374,20 @@ export default function NewList(props: NewListProps) {
                 {credits ? <p className="text-xl text-center font-mono text-black w-full">{credits} credits</p> : <p className="text-xl text-center text-black font-mono">0 credits</p>}
             </div> */}
             <label htmlFor="app" className="text-left font-mono w-full text-black">what do you want to build?</label>
+            <p className="text-gray-500 font-mono">we know it&s pretty difficult to compress your idea into one-line, but try to be as specific as possible. check <a className="text-gray-500 font-mono underline" href="https://twitter.com/search?q=(@_nightsweekends)&src=typed_query" target="none">this</a> out if you need some inspiration.</p>
             <input 
             id="app"
             className="bg-white w-full ring ring-gray-500 rounded-xl font-mono text-black p-3 disabled:opacity-20" 
-            placeholder="a to-do list app"
+            placeholder="a productivity desktop app for MacOS built with ElectronJS"
             disabled={loading}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             />
-                <label htmlFor="name" className="text-left font-mono w-full text-black">give your new list a name</label>
+                <label htmlFor="name" className="text-left font-mono w-full text-black">give your new list a name!</label>
             <input 
             id="name"
             className="bg-white w-full ring ring-gray-500 rounded-xl font-mono text-black p-3 disabled:opacity-20" 
-            placeholder="a to-do list app"
+            placeholder="ultimate productivity"
             disabled={loading}
             value={listTitle}
             onChange={(e) => setListTitle(e.target.value)}
