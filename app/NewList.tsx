@@ -183,7 +183,9 @@ export default function NewList(props: NewListProps) {
                 const { data, error } = await supabase
                 .from('todos')
                 .update({ pseudocode: response.text })
-                .eq('list_id', generatedID);
+                .eq('list_id', generatedID)
+                .eq('task', item1)
+                .select();
 
                 if (data) {
                     setPseudocode1Loading(false);
@@ -199,7 +201,9 @@ export default function NewList(props: NewListProps) {
                 const { data, error } = await supabase
                 .from('todos')
                 .update({ pseudocode: response.text })
-                .eq('list_id', generatedID);
+                .eq('list_id', generatedID)
+                .eq('task', item2)
+                .select();
 
                 if (data) {
                     setPseudocode2Loading(false);
@@ -215,7 +219,9 @@ export default function NewList(props: NewListProps) {
                 const { data, error } = await supabase
                 .from('todos')
                 .update({ pseudocode: response.text })
-                .eq('list_id', generatedID);
+                .eq('list_id', generatedID)
+                .eq('task', item3)
+                .select();
 
                 if (data) {
                     setPseudocode3Loading(false);
@@ -226,12 +232,14 @@ export default function NewList(props: NewListProps) {
                 if (error) {
                     console.error('error updating pseudocode for item 3', error);
                 }
-            }
+            } 
             if (passedItem === item4) {
                 const { data, error } = await supabase
                 .from('todos')
                 .update({ pseudocode: response.text })
-                .eq('list_id', generatedID);
+                .eq('list_id', generatedID)
+                .eq('task', item4)
+                .select();
 
                 if (data) {
                     setPseudocode4Loading(false);
@@ -247,7 +255,9 @@ export default function NewList(props: NewListProps) {
                 const { data, error } = await supabase
                 .from('todos')
                 .update({ pseudocode: response.text })
-                .eq('list_id', generatedID);
+                .eq('list_id', generatedID)
+                .eq('task', item5)
+                .select();
 
                 if (data) {
                     setPseudocode5Loading(false);
