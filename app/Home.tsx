@@ -9,6 +9,7 @@ import ListPage from "./ListPage";
 import NewList from "./NewList";
 import { UUID } from "crypto";
 import Login from "./login";
+import NewUser from "./NewUser";
 
 interface List {
     id: UUID,
@@ -31,6 +32,8 @@ export default function Home() {
     const [avatarURL, setAvatarURL] = useState<string | undefined>(undefined);
     const [fullName, setFullName] = useState<string | null>(null);
     const [credits, setCredits] = useState<number | null>(null);
+    const [desc, setDesc] = useState<string | null>(null);
+    const [workStyle, setWorkStyle] = useState<string | null>(null);
 
         //useEffect hook that checks for session whenever supabase changes
         useEffect(() => {
@@ -59,6 +62,8 @@ export default function Home() {
                     setAvatarURL(data[0].avatar_url);
                     setFullName(data[0].full_name);
                     setCredits(data[0].credits);
+                    setDesc(data[0].description);
+                    setWorkStyle(data[0].work_style);
                 }
     
                 if (error) {
@@ -91,13 +96,12 @@ export default function Home() {
 
     }, [session, supabase]);
 
-    //function to check if all todos in a list are completed
 
 
     return (
         <>
         {session && 
-        <div className="flex flex-row w-full min-h-screen bg-white">
+        <div className="flex flex-row w-full min-h-screen bg-white"> 
             <div className="flex flex-col w-1/6 min-h-screen bg-black justify-between p-1">
                 <div className="flex flex-row items-center justify-start gap-2">
                     <img className="w-10 h-10" src="https://media.discordapp.net/attachments/993733319386730541/1107410868783808572/Screenshot_2023-05-14_at_3.55.12_PM.png?width=360&height=348"></img>
@@ -142,8 +146,9 @@ export default function Home() {
                 </div>
             </div>
             <div className="bg-white w-full p-2 flex items-center justify-center">
-                {currentListID && currentListName && !creatingNewList && <ListPage session={session} idOfList={currentListID} nameOfList={currentListName} />}
-                {creatingNewList && <NewList session={session} credits={credits} />}
+                {currentListID && currentListName && !creatingNewList && desc && workStyle && <ListPage session={session} idOfList={currentListID} nameOfList={currentListName} />}
+                {creatingNewList && desc && workStyle && <NewList session={session} credits={credits} desc={desc} workStyle={workStyle} fullName={fullName} />}
+                {!desc && !workStyle && <NewUser fullName={fullName} avatarURL={avatarURL} credits={credits} session={session} /> }
             </div>
         </div>}
         {!session && <Login />}

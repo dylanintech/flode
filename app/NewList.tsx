@@ -12,6 +12,9 @@ import { v4 as uuidv4 } from 'uuid';
 interface NewListProps {
     credits: number | null,
     session: Session | null,
+    desc: string | null,
+    workStyle: string | null,
+    fullName: string | null, 
 }
 
 export default function NewList(props: NewListProps) {
@@ -77,12 +80,15 @@ export default function NewList(props: NewListProps) {
             if (props.credits) {
                 setLoading(true);
                 console.log('input', input);
+                console.log('desc', props.desc);
+                console.log('workstyle', props.workStyle);
+                console.log('fullname', props.fullName);
 
                 // prod: 'https://flode.vercel.app/api/overallchain'
 
-                const res = await fetch('https://flode.vercel.app/api/overallchain', {
+                const res = await fetch('http://localhost:3000/api/overallchain', {
                     method: "put",
-                    body: JSON.stringify({ input: input }),
+                    body: JSON.stringify({ input: input, desc: props.desc, workstyle: props.workStyle, fullname: props.fullName }),
                 })
     
                 console.log('res', res);
@@ -168,7 +174,7 @@ export default function NewList(props: NewListProps) {
             
             // const res = await pseudocodeChain.call({ item: passedItem });
             // prod: 'https://flode.vercel.app/api/pseudocodechain'
-            const res = await fetch('https://flode.vercel.app/api/pseudocodechain', {
+            const res = await fetch('http://localhost:3000/api/pseudocodechain', {
                 method: "put",
                 body: JSON.stringify({ input: passedItem }),
             })

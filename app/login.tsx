@@ -17,9 +17,9 @@ export default function Login() {
     const signInWithGithub = async () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "github",
-            // options: {
-            //     redirectTo: "http://localhost:3000"
-            // }
+            options: {
+                redirectTo: "http://localhost:3000"
+            }
         })
     }
 
@@ -34,7 +34,7 @@ export default function Login() {
                 <img src="https://media.discordapp.net/attachments/993733319386730541/1106925915319058615/Screenshot_2023-05-13_at_7.47.53_AM.png?width=2546&height=372" className="rounded-md shadow-lg w-100 h-30" />
             </div> */}
             <div className="flex flex-col w-1/2 items-center justify-center gap-2">
-                <h1 className="font-mono text-xl text-black">welcome to flode - the to-do list app for builders.</h1>
+                <h1 className="font-mono text-xl text-black">welcome to flode: the to-do list app for builders.</h1>
                 <button 
                 onClick={(e) => {
                     e.preventDefault();
