@@ -10,6 +10,7 @@ import NewList from "./NewList";
 import { UUID } from "crypto";
 import Login from "./login";
 import NewUser from "./NewUser";
+import Account from "./Account";
 
 interface List {
     id: UUID,
@@ -28,6 +29,7 @@ export default function Home() {
     const [currentListID, setCurrentListID] = useState<UUID | null>(null);
     const [currentListName, setCurrentListName] = useState<string | null>(null);
     const [creatingNewList, setCreatingNewList] = useState(true);
+    const [showAccount, setShowAccount] = useState(false);
 
     const [avatarURL, setAvatarURL] = useState<string | undefined>(undefined);
     const [fullName, setFullName] = useState<string | null>(null);
@@ -122,6 +124,7 @@ export default function Home() {
                             setCurrentListID(list.id);
                             setCurrentListName(list.name);
                             setCreatingNewList(false);
+                            setShowAccount(false);
                         }}
                         className="flex flex-row items-center justify-center bg-black w-full p-2 hover:bg-gray-800 rounded-lg" 
                         key={list.id}>
@@ -134,21 +137,27 @@ export default function Home() {
                     <button className="rounded-lg bg-black hover:bg-gray-800 flex flex-row items-center p-2 w-full" onClick={(e) => { 
                         e.preventDefault();
                         setCreatingNewList(true);
+                        setShowAccount(false);
                     }}>
                         <p className="font-mono text-white text-center w-full font-bold">+ create new list</p>
                     </button>
-                    <div className="flex flex-row gap-1 w-full items-center justify-center">
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        setShowAccount(true);
+                        setCreatingNewList(false);
+                        setCurrentListID(null);
+                        setCurrentListName(null);
+                    }} className="flex flex-row gap-1 w-full items-center justify-center bg-gray-500 rounded-lg">
                         <p className="font-bold text-white text-center">builder:</p>
                         <img className="rounded-full w-8 h-8 text-center" src={avatarURL} alt="pfp"></img>
-                    </div>
-                    <p className="text-white text-center font-mono w-full">credits: {credits}</p>
-                    <a href='https://notionforms.io/forms/feedback-on-flode' target='none' className='text-center underline text-white font-mono'>feedback</a>
+                    </button>
                 </div>
             </div>
             <div className="bg-white w-full p-2 flex items-center justify-center">
                 {currentListID && currentListName && !creatingNewList && desc && workStyle && <ListPage session={session} idOfList={currentListID} nameOfList={currentListName} />}
                 {creatingNewList && desc && workStyle && <NewList session={session} credits={credits} desc={desc} workStyle={workStyle} fullName={fullName} />}
                 {!desc && !workStyle && <NewUser fullName={fullName} avatarURL={avatarURL} credits={credits} session={session} /> }
+                {showAccount && <Account fullName={fullName} avatarURL={avatarURL} credits={credits} session={session} description={desc} workStyle={workStyle} />}
             </div>
         </div>}
         {!session && <Login />}
